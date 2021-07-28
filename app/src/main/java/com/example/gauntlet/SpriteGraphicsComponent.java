@@ -129,13 +129,21 @@ public class SpriteGraphicsComponent implements GraphicsComponent{
                 position.x = 23;
                 position.y = 11;
                 return position;
-            case "ghost_stationary":
+            case "ghost":
                 position.x = 0;
                 position.y = 0;
                 return position;
             case "key":
                 position.x = 19;
                 position.y = 6;
+                break;
+            case "wall":
+                position.x = 6;
+                position.y = 13;
+                break;
+            case "troll":
+                position.x = 0;
+                position.y = 1;
                 break;
             default:
                 // cry

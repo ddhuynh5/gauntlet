@@ -10,12 +10,12 @@ class PlayerInputComponent implements InputComponent,
         InputObserver {
 
     private Transform mTransform;
-    private PlayerArrowSpawner mPLS;
+    private PlayerArrowSpawner mPAS;
 
     PlayerInputComponent(GameEngine ger) {
 
         ger.addObserver(this);
-        mPLS = ger;
+        mPAS = ger;
 
     }
 
@@ -48,7 +48,7 @@ class PlayerInputComponent implements InputComponent,
 
                 if (localButtons.get(HUD.SHOOT).contains(x, y)) {
                     System.out.println("TRYING TO SHOOT.");
-                    mPLS.spawnPlayerArrow(mTransform);
+                    mPAS.spawnPlayerArrow(mTransform);
                 }
 
                 else if (localJS.isJoystickTouched(x, y)) {
@@ -68,6 +68,9 @@ class PlayerInputComponent implements InputComponent,
                 if (localJS.isJoystickTouched(x, y)) {
                     mTransform.setAngle(localJS.calcAngle(x, y));
                     mTransform.setMovementAvailability();
+                }
+                else if (localButtons.get(HUD.SHOOT).contains(x,y)){
+                    mPAS.spawnPlayerArrow(mTransform);
                 }
 
                 break;

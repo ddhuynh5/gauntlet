@@ -9,7 +9,6 @@ import android.graphics.*;
 public class BackgroundGraphicsComponent implements GraphicsComponent{
     private Bitmap mBitmap;
     private Bitmap wallBitmap;
-    private Bitmap exitBitmap;
     private GameMap gameMap;
     public static Context context;
 
@@ -19,7 +18,7 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
     private Point mScreenRes = new Point(
             GameData.IMAGE_RESOLUTION_X,
             GameData.IMAGE_RESOLUTION_Y
-            );
+    );
 
     private Point lowResFactor = new Point(
             GameData.LOWRES_CONV_FACTOR_X,
@@ -38,7 +37,6 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
         int resID = c.getResources().getIdentifier(s.getBitmapName(), "drawable", c.getPackageName());
         mBitmap = BitmapFactory.decodeResource(c.getResources(), resID);
         wallBitmap = BitmapFactory.decodeResource(c.getResources(), R.drawable.redwall);
-        exitBitmap = BitmapFactory.decodeResource(c.getResources(), R.drawable.exitroom);
         context = c;
         s1 = s;
         objectSize1 = objectSize;
@@ -48,7 +46,6 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
         mBitmap = Bitmap.createScaledBitmap(mBitmap, mScreenRes.x, mScreenRes.y, false);
         // TO DO: Confirm scaling ratio from text map to  full drawn map..
         wallBitmap = Bitmap.createScaledBitmap(wallBitmap, lowResFactor.x, lowResFactor.y, false);
-        exitBitmap = Bitmap.createScaledBitmap(exitBitmap, lowResFactor.x, lowResFactor.y, false);
 //        bitmapNew = Bitmap.createScaledBitmap(bitmapNew, (int)objectSize.x, (int)objectSize.y, false);
         GameData.mainBitmap = Bitmap.createBitmap(mScreenRes.x, mScreenRes.y, mBitmap.getConfig());
         GameData.initialBitmap = Bitmap.createBitmap(mScreenRes.x, mScreenRes.y, mBitmap.getConfig());
@@ -63,13 +60,12 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
         paint.setColor(Color.argb(255, 255, 255, 255));
 
 
-         for (int i = 0; i < gameMap.obstacleContainer.size(); i++) {
-           canvas.drawBitmap(wallBitmap,
-                   gameMap.obstacleContainer.get(i).location.left,
-                   gameMap.obstacleContainer.get(i).location.top,
-                   null);
+        for (int i = 0; i < gameMap.obstacleContainer.size(); i++) {
+            canvas.drawBitmap(wallBitmap,
+                    gameMap.obstacleContainer.get(i).location.left,
+                    gameMap.obstacleContainer.get(i).location.top,
+                    null);
         }
-        canvas.drawBitmap(exitBitmap, gameMap.exitObstacle.location.left, gameMap.exitObstacle.location.top, null);
 
         canvas.setBitmap(GameData.initialBitmap);
         canvas.drawBitmap(GameData.mainBitmap, 0, 0, null);
@@ -110,17 +106,17 @@ public class BackgroundGraphicsComponent implements GraphicsComponent{
         }
 
         else {
-                // Portion to draw..
+            // Portion to draw..
 
 
 
             Rect fromRect1 = new Rect((int)backgroundPortionToDraw.left, (int)backgroundPortionToDraw.top,
                     (int)backgroundPortionToDraw.right, (int)backgroundPortionToDraw.bottom);
 
-                // To keep the aspect ratio same, width is passed twice
+            // To keep the aspect ratio same, width is passed twice
             GameData.fullMapRect = new Rect(0, 0, width, height);
 
-                // Note: Choose your own size for the map..
+            // Note: Choose your own size for the map..
             canvas.drawBitmap(GameData.mainBitmap,fromRect1, GameData.fullMapRect, paint);
 
 

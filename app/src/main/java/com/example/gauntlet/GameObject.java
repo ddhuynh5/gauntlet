@@ -32,6 +32,8 @@ class GameObject {
         ac.initialize(c, spec);
     }
 
+    AnimationComponent getAnimationComponent(){ return animationComponent; }
+
     void setMovement(MovementComponent m) {
         movementComponent = m;
     }

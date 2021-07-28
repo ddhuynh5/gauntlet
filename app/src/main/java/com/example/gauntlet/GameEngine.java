@@ -56,7 +56,7 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
                 .spawn(transform)) {
 
             Level.mNextPlayerArrow++;
-            mSoundEngine.playShoot();
+
             if (Level.mNextPlayerArrow ==
                     Level.LAST_PLAYER_ARROW + 1) {
 
@@ -65,6 +65,9 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
 
             }
         }
+
+        objects.get(Level.PLAYER_INDEX).
+                getAnimationComponent().objectAction(1, objects.get(Level.PLAYER_INDEX));
 
         return true;
     }
@@ -76,7 +79,7 @@ class GameEngine extends SurfaceView implements Runnable, GameStarter, GameEngin
         // that requested the shot to be fired
         if (objects.get(Level.mNextAlienArrow).spawn(transform)) {
             Level.mNextAlienArrow++;
-            mSoundEngine.playShoot();
+
             if(Level.mNextAlienArrow ==Level.LAST_ALIEN_ARROW + 1) {
                 // Just used the last arrow
                 Level.mNextAlienArrow = Level.FIRST_ALIEN_ARROW;
