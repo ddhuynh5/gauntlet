@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.SystemClock;
 import android.util.Log;
 
 import java.io.IOException;
@@ -85,37 +86,37 @@ public class PlayerAnimationComponent extends SpriteGraphicsComponent implements
 
 
         // heading east
-        if (currentAngle > 340 && currentAngle < 40){
+        if (currentAngle > 340d && currentAngle < 40d){
             changeFrame(FACING_EAST, player);
         }
 
         // heading north east
-        else if (currentAngle < 85){
+        else if (currentAngle < 85d){
             changeFrame(FACING_NORTHEAST, player);
         }
 
         // heading north
-        else if (currentAngle > 70 & currentAngle < 115){
+        else if (currentAngle < 110d){
             changeFrame(FACING_NORTH, player);
         }
 
         // heading north west
-        else if (currentAngle < 165){
+        else if (currentAngle < 160d){
             changeFrame(FACING_NORTHWEST, player);
         }
 
         // heading west
-        else if (currentAngle > 164 && currentAngle < 195 ){
+        else if (currentAngle < 200d ){
             changeFrame(FACING_WEST, player);
         }
 
         // heading south west
-        else if (currentAngle < 255){
+        else if (currentAngle < 255d){
             changeFrame(FACING_SOUTHWEST, player);
         }
 
         // heading south
-        else if (currentAngle > 254 && currentAngle < 285){
+        else if (currentAngle < 290){
             changeFrame(FACING_SOUTH, player);
         }
 
@@ -152,29 +153,45 @@ public class PlayerAnimationComponent extends SpriteGraphicsComponent implements
         // change current frame to desired animation
         if (currentAnimation != facing) {
             currentAnimation = facing;
-            currentFrame = currentAnimation + ANIMATION_OFFSET;
+            currentFrame = currentAnimation;
         } else {
             // If the desired amount of time between ticks has passed, animate player
             if (canAnimate()) {
                 // If the current frame is on second frame of movement, switch to first
-                if (currentFrame != currentAnimation + ANIMATION_OFFSET) {
-                    currentFrame = currentAnimation + ANIMATION_OFFSET;
+                if (currentFrame == currentAnimation) {
+                    currentFrame = currentFrame + ANIMATION_OFFSET;
                 }
                 // else, switch to second frame
                 else {
-                    currentFrame = currentFrame + ANIMATION_OFFSET;
+                    currentFrame = currentAnimation;
                 }
 
             }
         }
-        // TODO: FIX THIS PLS
+
         // If the player is moving, animate
-        if (player.getTransform().isMoving()) {
+        if (player.getTransform().isAvailableToMove()) {
             player.getGraphicsComponent().setBitmap(mSpriteArray.get(currentFrame));
         }
         // else, stay on current frame
         else {
             player.getGraphicsComponent().setBitmap(mSpriteArray.get(currentAnimation));
         }
+
+    }
+
+
+    @Override
+    public void objectAction(int action, GameObject player){
+        final int SHOT_ARROW = 1;
+        long currentTime = System.currentTimeMillis();
+        if (action == SHOT_ARROW){
+            Log.d("D", "Arrow Animation");
+            currentFrame = currentAnimation + 8;
+            player.getGraphicsComponent().setBitmap(mSpriteArray.get(currentFrame));
+            Log.d("D", "Current frame: " + currentFrame + " Current Animation: " + currentAnimation);
+            lastFrameTime = currentTime;
+        }
+
     }
 }

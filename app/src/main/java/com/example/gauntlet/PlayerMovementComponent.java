@@ -51,7 +51,7 @@ class PlayerMovementComponent implements MovementComponent {
         // If circle was pressed and is still held down.
         if (t.isAvailableToMove()) {
             // Setting vector components based off angle passed in inputComponent by Joystick.
-            // Just multiplying x/y speed by cos/sin of theta to find those components.
+            // Just multiplying x/y speed by cos/sin of theta to find those components
             t.setMovementComponents();
             velocity = t.getMovementComponents();
             // Once, components found - very simple implementation below.
@@ -150,8 +150,9 @@ class PlayerMovementComponent implements MovementComponent {
                 t.headRight();
             }
 
-            else if (velocity. x < 0) {
+            else if (velocity.x < 0) {
                 t.headLeft();
+                Log.d("D", "headding left");
             }
 
         }

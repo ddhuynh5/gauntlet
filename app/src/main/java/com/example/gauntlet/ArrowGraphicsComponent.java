@@ -2,6 +2,7 @@ package com.example.gauntlet;
 
 import android.content.Context;
 import android.graphics.*;
+import android.util.Log;
 
 public class ArrowGraphicsComponent implements GraphicsComponent {
 
@@ -41,7 +42,7 @@ public class ArrowGraphicsComponent implements GraphicsComponent {
         }
 
         else {
-            canvas.drawBitmap(mBitmapReversed, t.getLocation().x, t.getLocation().y, paint);
+            canvas.drawBitmap(mBitmapReversed, t.drawableLocation.x, t.drawableLocation.y, paint);
         }
 
 

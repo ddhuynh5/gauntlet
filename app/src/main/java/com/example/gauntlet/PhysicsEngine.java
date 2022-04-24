@@ -61,7 +61,7 @@ class PhysicsEngine {
                                             .PLAYER_INDEX).getTransform());
 
                                     go1.setInactive();
-                                    se.playAlienExplode();
+
                                     break;
                                 case "Player with PassKey":
                                     Level.isLevelFinished = true;

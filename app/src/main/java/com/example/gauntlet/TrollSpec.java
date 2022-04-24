@@ -12,7 +12,7 @@ public class TrollSpec extends ObjectSpec{
             new PointF(10f, 8f);
 
     private static final String[] components = new String [] {
-            "StdGraphicsComponent",
+            "NPCGraphicsComponent",
             "TrollMovementComponent",
             "TrollSpawnComponent"};
 

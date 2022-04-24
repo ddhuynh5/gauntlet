@@ -13,7 +13,7 @@ class GhostChaseMovementComponent implements MovementComponent {
     @Override
     public boolean move(long fps, Transform t, Transform playerTransform) {
 
-
+        playerTransform.setMoving(true);
         PointF playerLocation = playerTransform.getLocation();
 
 
@@ -67,7 +67,7 @@ class GhostChaseMovementComponent implements MovementComponent {
         // Update the collider
         t.updateCollider();
 
-
+        playerTransform.setMoving(false);
 
         return true;
     }

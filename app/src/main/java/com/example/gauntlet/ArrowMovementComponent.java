@@ -30,6 +30,12 @@ class ArrowMovementComponent implements MovementComponent {
         else if(t.headingLeft()){
             location.x -= speed / fps;
             t.drawableLocation.x -= drawSpeed / fps;
+        } else if (t.headingUp()) {
+            location.y -= speed / fps;
+            t.drawableLocation.y -= drawSpeed / fps;
+        } else if (t.headingDown()){
+            location.y += speed / fps;
+            t.drawableLocation.y += drawSpeed / fps;
         }
 
         // Has the arrow gone out of range

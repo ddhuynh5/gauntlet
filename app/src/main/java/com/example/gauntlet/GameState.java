@@ -12,6 +12,7 @@ final class GameState {
     // This object will have access to the deSpawnReSpawn method
     // in GameEngine- once it is initialized
     private GameStarter gameStarter;
+    private SoundEngine soundEngine;
 
 
     private int mScore;
@@ -36,6 +37,8 @@ final class GameState {
         // labeled "hiscore"
         // if not available highscore set to zero 0
         mHighScore = prefs.getInt("hi_score", 0);
+
+        soundEngine = new SoundEngine(context);
     }
 
     private void endGame(){
@@ -58,6 +61,7 @@ final class GameState {
         stopDrawing();
         gameStarter.deSpawnReSpawn();
         resume();
+        soundEngine.playWayOut();
 
         // Now we can draw again
         startDrawing();

@@ -13,9 +13,9 @@ import java.io.IOException;
 class SoundEngine {
     // for playing sound effects
     private SoundPool mSP;
-    private int mShoot_ID = -1;
-    private int mAlien_Explode_ID = -1;
-    private int mPlayer_explode_ID = -1;
+    // private int mShoot_ID = -1;
+    private int mWay_Out_ID = -1;
+
 
     SoundEngine(Context c){
         // Initialize the SoundPool
@@ -39,16 +39,9 @@ class SoundEngine {
             AssetFileDescriptor descriptor;
 
             // Prepare the sounds in memory
-            descriptor = assetManager.openFd("shoot.ogg");
-            mShoot_ID = mSP.load(descriptor, 0);
+            descriptor = assetManager.openFd("way_out.ogg");
+            mWay_Out_ID = mSP.load(descriptor, 0);
 
-            descriptor = assetManager.openFd("alien_explosion.ogg");
-            mAlien_Explode_ID = mSP.load(descriptor, 0);
-
-            descriptor =
-                    assetManager.openFd("player_explosion.ogg");
-
-            mPlayer_explode_ID = mSP.load(descriptor, 0);
 
         } catch (IOException e) {
             // Error
@@ -56,17 +49,21 @@ class SoundEngine {
 
     }
 
-    void playShoot(){
-        mSP.play(mShoot_ID,1, 1, 0, 0, 1);
+    void playWayOut(){
+        mSP.play(mWay_Out_ID, 1, 1, 0, 0, 1);
     }
 
-    void playAlienExplode(){
-        mSP.play(mAlien_Explode_ID,1, 1, 0, 0, 1);
-    }
+//    void playShoot(){
+//        mSP.play(mShoot_ID,1, 1, 0, 0, 1);
+//    }
 
-    void playPlayerExplode(){
-        mSP.play(mPlayer_explode_ID,1, 1, 0, 0, 1);
-    }
+//    void playAlienExplode(){
+//        mSP.play(mAlien_Explode_ID,1, 1, 0, 0, 1);
+//    }
+
+//    void playPlayerExplode(){
+//        mSP.play(mPlayer_explode_ID,1, 1, 0, 0, 1);
+//    }
 
 
 }

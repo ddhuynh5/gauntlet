@@ -35,6 +35,7 @@ class Transform {
     public static Point bitmapRes;
     public PointF overallLocation;
     public PointF drawableLocation;
+    private boolean mMoving = false;
 
     public static ArrayList<PointF> spawnableLocations = new ArrayList<>();
 
@@ -173,13 +174,16 @@ class Transform {
     boolean headingLeft(){
         return mHeadingLeft;
     }
-
+    void setMoving(boolean action) { mMoving = action; }
     boolean isMoving() {
         // TODO: FIX PLS
-        boolean check =  mPastLocation == mLocation;
-        mPastLocation = mLocation;
-        Log.d("D", "Is Moving: " + check);
-        return check;
+//        boolean check =  mPastLocation != mLocation;
+//        Log.d("D", "Past location " + mPastLocation);
+//        Log.d("D", "Current Location: " + mLocation);
+//        mPastLocation = mLocation;
+        Log.d("D", "Is Moving: " + mMoving);
+
+        return mMoving;
     }
 
     boolean isAvailableToMove() {
